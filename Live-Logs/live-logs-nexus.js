@@ -1,5 +1,5 @@
 LL = (function() {
-  var LE = PBKDF2, ng = ng;
+  var LE = PBKDF2, namegen = ng;
   var useGZIP = true;
   var repositoryAddress = 'live-logs-recorded';
   var encryptedTokenKey = 'live-logs-token-encrypted';
@@ -113,7 +113,7 @@ LL = (function() {
     if (useGZIP && typeof gzip != 'undefined') { datum = gzip.zip(datum) };
     var log = btoa(unescape(encodeURIComponent(datum))); // https://stackoverflow.com/a/45844934
     var date = new Date()
-    var name = date.getFullYear() + '.' + lpad((date.getUTCMonth() + 1), 2, '0') + '.' + lpad(date.getUTCDate(), 2, '0') + 'H' + lpad(date.getUTCHours(), 2, '0') + '.' + lpad(date.getUTCMinutes(), 2, '0') + '.' + lpad(date.getUTCSeconds(), 2, '0') + '-' + ng.random()
+    var name = date.getFullYear() + '.' + lpad((date.getUTCMonth() + 1), 2, '0') + '.' + lpad(date.getUTCDate(), 2, '0') + 'H' + lpad(date.getUTCHours(), 2, '0') + '.' + lpad(date.getUTCMinutes(), 2, '0') + '.' + lpad(date.getUTCSeconds(), 2, '0') + '-' + namegen.random()
     
     return $.ajax({
       url: 'https://api.github.com/repos/' + login + '/' + repositoryAddress + '/contents/' + name,
