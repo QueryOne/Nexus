@@ -112,7 +112,7 @@ LL = (function() {
     if (useGZIP && typeof gzip != 'undefined') { datum = gzip.zip(datum) };
     var log = btoa(unescape(encodeURIComponent(datum))); // https://stackoverflow.com/a/45844934
     var date = new Date()
-    var name = date.getFullYear() + '.' + lpad((date.getUTCMonth() + 1), 2, '0') + '.' + lpad(date.getUTCDate(), 2, '0') + 'H' + lpad(date.getUTCHours(), 2, '0') + '.' + lpad(date.getUTCMinutes(), 2, '0') + '.' + lpad(date.getUTCSeconds(), 2, '0') + '-' + ng.name()
+    var name = date.getFullYear() + '.' + lpad((date.getUTCMonth() + 1), 2, '0') + '.' + lpad(date.getUTCDate(), 2, '0') + 'H' + lpad(date.getUTCHours(), 2, '0') + '.' + lpad(date.getUTCMinutes(), 2, '0') + '.' + lpad(date.getUTCSeconds(), 2, '0') + '-' + ng.random()
     
     return $.ajax({
       url: 'https://api.github.com/repos/' + login + '/' + repositoryAddress + '/contents/' + name,
