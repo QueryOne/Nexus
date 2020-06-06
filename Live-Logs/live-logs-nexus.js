@@ -1,5 +1,5 @@
 LL = (function() {
-  var LE = PBKDF2, ng = namegen;
+  var LE = PBKDF2;
   var useGZIP = true;
   var repositoryAddress = 'live-logs-recorded';
   var encryptedTokenKey = 'live-logs-token-encrypted';
