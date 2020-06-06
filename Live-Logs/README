@@ -1,4 +1,6 @@
-Upload logs onto Github
+function
+   Upload logs onto Github
 
-requires Nexus/Utilities/namegen.js
-requires Nexus/Utilities/pbkdf2.js
+requires
+   Nexus/Utilities/namegen.js
+   Nexus/Utilities/pbkdf2.js
