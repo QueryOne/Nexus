@@ -1,2 +1,4 @@
+<h3>Uploads logs onto Github</h3>
+
 requires Nexus/Utilities/namegen.js
 requires Nexus/Utilities/pbkdf2.js
