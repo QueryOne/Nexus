@@ -5,12 +5,13 @@ LL = (function() {
   var encryptedTokenKey = 'live-logs-token-encrypted';
   var encryptedSaltKey  = 'live-logs-salt-encrypted';
   var encryptedIVKey    = 'live-logs-iv-encrypted';
+  var reportColor       = 'rgba(144,56,73,1)';
   LE.assign(encryptedTokenKey, encryptedSaltKey, encryptedIVKey);
   
   var lpad = function(str, len, ch) { if (typeof str == 'number') { str = str.toString() }; if (ch == null) { ch = ' ' }; var r = len - str.length; if (r < 0) { r = 0 }; return ch.repeat(r) + str };
   var testLocalStorage = function() { if (typeof localStorage === 'undefined') {return false}; var t = 'test'; try {localStorage.setItem(t,t); localStorage.removeItem(t); return true;} catch(e) {return false} };
+  var report = function(msg) { client.display_notice('>> ' + msg, reportColor) };
   
-  var id = client.package_exists('Live-Logs');
   client.display_text_block = function(lines) {
     var block = client.generate_text_block(lines);
     client.update_text_completion(lines);
@@ -75,7 +76,7 @@ LL = (function() {
       type: 'GET',
       beforeSend: function(xhr) { xhr.setRequestHeader('Authorization', 'token ' + token) },
       success: function(e) { LL.login = e.login; return e },
-      error: function(e,f,g) { console.log('Error at Token not associated with Github account.'); console.log(e); console.log(f); console.log(g); client.print('>> Error: Token not associated with Github account.'); },
+      error: function(e,f,g) { console.log('Error at Token not associated with Github account.'); console.log(e); console.log(f); console.log(g); report('>> Error: Token not associated with Github account.'); },
     })
   }
   var locateRepository = function(token, r, msg) {
@@ -88,10 +89,10 @@ LL = (function() {
       error: function(e,f,g) {
         console.log('Error locating repository at path: https://api.github.com/repos/' + login + '/' + repositoryAddress);
         console.log(e); console.log(f); console.log(g);
-        client.print('>> Error: Cannot locate repository at path: https://api.github.com/repos/' + login + '/' + repositoryAddress);
+        report('Error: Cannot locate repository at path: https://api.github.com/repos/' + login + '/' + repositoryAddress);
         console.log('Dropping initial Promise(), creating respository.');
-        client.print('>> Dropping initial Promise()')
-        client.print('>> Attempting to create repository at path: https://api.github.com/repos/' + login + '/' + repositoryAddress);
+        report('Dropping initial Promise()')
+        report('Attempting to create repository at path: https://api.github.com/repos/' + login + '/' + repositoryAddress);
         createRepository(token, r, msg)
       },
     })
@@ -102,8 +103,8 @@ LL = (function() {
       type: 'POST',
       beforeSend: function(xhr) { xhr.setRequestHeader('Authorization', 'token ' + token); },
       data: JSON.stringify({name: repositoryAddress, description:'repository for my live-logs', private: false}),
-      success: function(e,f) { console.log(e); console.log(f); /* console.log(token); console.log(r); */ client.print('>> Successfully created repository. Writing...'); writeToRepository(token, r, msg); },
-      error: function(e,f,g) { console.log('Error creating repository.'); console.log(e); console.log(f); console.log(g); client.print('>> Error: Unable to create repository, see console for more information.'); },
+      success: function(e,f) { console.log(e); console.log(f); /* console.log(token); console.log(r); */ report('Successfully created repository. Writing...'); writeToRepository(token, r, msg); },
+      error: function(e,f,g) { console.log('Error creating repository.'); console.log(e); console.log(f); console.log(g); report('Error: Unable to create repository, see console for more information.'); },
     })
   }
   var writeToRepository = function(token, r, msg) {
@@ -121,13 +122,13 @@ LL = (function() {
       data: JSON.stringify({message:'Uploaded log @ [' + new Date() + '] ' + msg, content: log}),
       success: function(e,f) {
          console.log(e); console.log(f); // client.print('Successfully written to Github.');
-         client.print('>> Successfully written to Github. Read your new log here: ' + e.content.url);
+         report('Successfully written to Github. Read your new log here: ' + e.content.url);
          LL.log = [];
       },
       error: function(e,f,g) { 
          console.log('Error uploading data. Check that a SHA is not required, that Base64 encoding is correct and the path is correct. Good luck!'); 
          console.log(e); console.log(f); console.log(g);
-         client.print('>> Error: Cannot upload data, check SHA, Base64 and path. Good luck.')
+         report('Error: Cannot upload data, check SHA, Base64 and path. Good luck.')
       },
     })
   }
@@ -136,15 +137,15 @@ LL = (function() {
     let token;
     var msg   = msg || ''
     
-    client.print('>> Beginning log attempt to Github.')
+    report('Beginning log attempt to Github.')
     if (!testLocalStorage()) {
-      client.print('>> Unable to access localStorage, please input your Github token.');
+      report('Unable to access localStorage, please input your Github token.');
       token = window.prompt('Enter your Github token.');
     } else {
       var password = window.prompt('Enter your local password.');
       var cipher = new Uint8Array(JSON.parse(localStorage.getItem(encryptedTokenKey)));
       token = await LE.decrypt(password, cipher);
-      client.print('>> Token decrypted.');
+      report('Token decrypted.');
     }
     verifyToken(token).then(res => locateRepository(token, res, msg)).then(res => writeToRepository(token, res, msg)); // we abandon the chain as writing has separate branches :(
   }
@@ -152,7 +153,7 @@ LL = (function() {
     let token = window.prompt('Enter your Github token.');
     let password = window.prompt('Enter your local password.');
     var h = LE.encrypt(password, token);
-    if (h) { client.print('>> Token encrypted.') };
+    if (h) { report('Token encrypted.') };
   }
   var setup = async function() {
     await $.ajax({
@@ -162,17 +163,17 @@ LL = (function() {
       },
     })
     if (!testLocalStorage()) {
-      client.print('>> Browser not supporting localStorage, apologies. You will be required to input your token on attempting upload of logs.')
+      report('Browser not supporting localStorage, apologies. You will be required to input your token on attempting upload of logs.')
     } else {
       var encryptedToken = localStorage.getItem(encryptedTokenKey)
       if (encryptedToken === null) {
         inputToken()
       } else {
-        client.print('>> Encrypted Github token found. Use your password when uploading logs to Github.');
+        report('Encrypted Github token found. Use your password when uploading logs to Github.');
       }
     }
   }
-  client.print('>> Run LL.setup() when you are ready to setup. Run LL.upload() when you want to upload.')
+  report('Run LL.setup() when you are ready to setup. Run LL.upload() when you want to upload.')
   
   return {
     inputToken: inputToken,
