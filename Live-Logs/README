@@ -1,0 +1,2 @@
+requires Nexus/Utilities/namegen.js
+requires Nexus/Utilities/pbkdf2.js
