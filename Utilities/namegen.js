@@ -1,5 +1,4 @@
-
-namegen = (function() {
+ng = (function() {
   var random = function(min,max) { return Math.floor(Math.random() * (max - min + 1) + min) }
   var grandom = function(list) { return list[random(0, list.length - 1)] }
   
