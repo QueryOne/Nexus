@@ -2,5 +2,6 @@ function
    Upload logs onto Github
 
 requires
+   Nexus/Utilities/gzip.min.js
    Nexus/Utilities/namegen.js
    Nexus/Utilities/pbkdf2.js
