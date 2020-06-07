@@ -156,12 +156,6 @@ LL = (function() {
     if (h) { report('Token encrypted.') };
   }
   var setup = async function() {
-    await $.ajax({
-      url: 'https://raw.githubusercontent.com/QueryOne/xu/master/gzip.min.js',
-      success: function(e,v) {
-        if (v == 'success') { try { eval(e) } catch(err) { console.log(err) } };
-      },
-    })
     if (!testLocalStorage()) {
       report('Browser not supporting localStorage, apologies. You will be required to input your token on attempting upload of logs.')
     } else {
