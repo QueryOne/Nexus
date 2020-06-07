@@ -12,6 +12,8 @@ LL = (function() {
   var testLocalStorage = function() { if (typeof localStorage === 'undefined') {return false}; var t = 'test'; try {localStorage.setItem(t,t); localStorage.removeItem(t); return true;} catch(e) {return false} };
   var report = function(msg) { client.display_notice('>> ' + msg, reportColor) };
   
+  var character = client.charname || 'undefined';
+  
   client.display_text_block = function(lines) {
     var block = client.generate_text_block(lines);
     client.update_text_completion(lines);
@@ -107,9 +109,11 @@ LL = (function() {
       error: function(e,f,g) { console.log('Error creating repository.'); console.log(e); console.log(f); console.log(g); report('Error: Unable to create repository, see console for more information.'); },
     })
   }
-  var writeToRepository = function(token, r, msg) {
+  var writeToRepository = function(token, r, msg, tags) {
     var login = r.login || r.owner.login; // bleugh
-    var datum = JSON.stringify(LL.log);
+    var tags = tags || [];
+    var meta = {tags:tags, user:character};
+    var datum = JSON.stringify({payload: LL.log, meta:meta});
     if (useGZIP && typeof gzip != 'undefined') { datum = gzip.zip(datum) };
     var log = btoa(unescape(encodeURIComponent(datum))); // https://stackoverflow.com/a/45844934
     var date = new Date()
@@ -132,7 +136,7 @@ LL = (function() {
       },
     })
   }
-  var attemptUpload = async function(msg) {
+  var attemptUpload = async function(msg, tags) {
     /* Need to figure out Conditional Requests to reduce API Limit consumption (https://developer.github.com/v3/#schema) */
     let token;
     var msg   = msg || ''
@@ -147,7 +151,7 @@ LL = (function() {
       token = await LE.decrypt(password, cipher);
       report('Token decrypted.');
     }
-    verifyToken(token).then(res => locateRepository(token, res, msg)).then(res => writeToRepository(token, res, msg)); // we abandon the chain as writing has separate branches :(
+    verifyToken(token).then(res => locateRepository(token, res, msg)).then(res => writeToRepository(token, res, msg, tags)); // we abandon the chain as writing has separate branches :(
   }
   var inputToken = function() {
     let token = window.prompt('Enter your Github token.');
