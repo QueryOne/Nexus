@@ -6,6 +6,7 @@ LL = (function() {
   var encryptedSaltKey  = 'live-logs-salt-encrypted';
   var encryptedIVKey    = 'live-logs-iv-encrypted';
   var reportColor       = 'rgba(144,56,73,1)';
+  var prefix            = 'https://queryone.github.io/Live-Logs/'
   LE.assign(encryptedTokenKey, encryptedSaltKey, encryptedIVKey);
   
   var lpad = function(str, len, ch) { if (typeof str == 'number') { str = str.toString() }; if (ch == null) { ch = ' ' }; var r = len - str.length; if (r < 0) { r = 0 }; return ch.repeat(r) + str };
@@ -110,7 +111,7 @@ LL = (function() {
     })
   }
   var writeToRepository = function(token, r, msg, tags) {
-    var login = r.login || r.owner.login; // bleugh
+    let login = r.login || r.owner.login; // bleugh
     var tags = tags || [];
     var meta = {tags:tags, user:character};
     var datum = JSON.stringify({payload: LL.log, meta:meta});
@@ -126,7 +127,10 @@ LL = (function() {
       data: JSON.stringify({message:'Uploaded log @ [' + new Date() + '] ' + msg, content: log}),
       success: function(e,f) {
          console.log(e); console.log(f); // client.print('Successfully written to Github.');
-         report('Successfully written to Github. Read your new log here: ' + e.content.url);
+         var uri = prefix + '?user=' + login + '&' + 'filename=' + e.content.name + '&' + 'meta=' + 'ironrealms,' + client.game;
+             uri += '&char=' + client.charname.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+         report('Successfully written to Github. Review your log here: ' + uri);
+         // report('Successfully written to Github. Read your new log here: ' + e.content.url);
          LL.log = [];
       },
       error: function(e,f,g) { 
