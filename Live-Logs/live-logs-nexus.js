@@ -110,18 +110,19 @@ LL = (function() {
       error: function(e,f,g) { console.log('Error creating repository.'); console.log(e); console.log(f); console.log(g); report('Error: Unable to create repository, see console for more information.'); },
     })
   }
-  var writeToRepository = function(token, r, msg, tags) {
+  var writeToRepository = function(token, r, msg, tags, name) {
     let login = r.login || r.owner.login; // bleugh
     var tags = tags || [];
+    var name = name || namegen.random();
     var meta = {tags:tags, user:character};
     var datum = JSON.stringify({payload: LL.log, meta:meta});
     if (useGZIP && typeof gzip != 'undefined') { datum = gzip.zip(datum) };
     var log = btoa(unescape(encodeURIComponent(datum))); // https://stackoverflow.com/a/45844934
     var date = new Date()
-    var name = date.getFullYear() + '.' + lpad((date.getUTCMonth() + 1), 2, '0') + '.' + lpad(date.getUTCDate(), 2, '0') + 'H' + lpad(date.getUTCHours(), 2, '0') + '.' + lpad(date.getUTCMinutes(), 2, '0') + '.' + lpad(date.getUTCSeconds(), 2, '0') + '-' + namegen.random()
+    var filename = date.getFullYear() + '.' + lpad((date.getUTCMonth() + 1), 2, '0') + '.' + lpad(date.getUTCDate(), 2, '0') + 'H' + lpad(date.getUTCHours(), 2, '0') + '.' + lpad(date.getUTCMinutes(), 2, '0') + '.' + lpad(date.getUTCSeconds(), 2, '0') + '-' + name;
     
     return $.ajax({
-      url: 'https://api.github.com/repos/' + login + '/' + repositoryAddress + '/contents/' + name,
+      url: 'https://api.github.com/repos/' + login + '/' + repositoryAddress + '/contents/' + filename,
       type: 'PUT',
       beforeSend: function(xhr) { xhr.setRequestHeader('Authorization', 'token ' + token); },
       data: JSON.stringify({message:'Uploaded log @ [' + new Date() + '] ' + msg, content: log}),
@@ -140,7 +141,7 @@ LL = (function() {
       },
     })
   }
-  var attemptUpload = async function(msg, tags) {
+  var attemptUpload = async function(msg, tags, name) {
     /* Need to figure out Conditional Requests to reduce API Limit consumption (https://developer.github.com/v3/#schema) */
     let token;
     var msg   = msg || ''
@@ -155,7 +156,7 @@ LL = (function() {
       token = await LE.decrypt(password, cipher);
       report('Token decrypted.');
     }
-    verifyToken(token).then(res => locateRepository(token, res, msg)).then(res => writeToRepository(token, res, msg, tags)); // we abandon the chain as writing has separate branches :(
+    verifyToken(token).then(res => locateRepository(token, res, msg)).then(res => writeToRepository(token, res, msg, tags, name)); // we abandon the chain as writing has separate branches :(
   }
   var inputToken = function() {
     let token = window.prompt('Enter your Github token.');
@@ -175,12 +176,24 @@ LL = (function() {
       }
     }
   }
+  
+  var checkLocalStorage = function() {
+    if (!testLocalStorage()) 
+  }
+  var checkToken = function() {
+    var encryptedToken = localStorage.getItem(encryptedTokenKey);
+    if (encryptedToken === null) { return false } else { return true };
+  }
   report('Run LL.setup() when you are ready to setup. Run LL.upload() when you want to upload.')
   
   return {
-    inputToken: inputToken,
     log: [],
     setup: setup,
     upload: attemptUpload,
+    
+    /* api */
+    checkLocalStorage: function() { return !testLocalStorage() },
+    checkToken: function() { return localStorage.getItem(encryptedTokenKey) ? true : false },
+    inputToken: inputToken,
   }
 })()
