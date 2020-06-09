@@ -1,0 +1,22 @@
+function
+   highlights subsections of text
+
+requires
+   none
+   
+usage
+   orange.print('<span class="xc-red">Pay attention</span>', vpos, hpos)
+   
+   VPOS
+       -2 : top of the block
+       -1 : last displayed line
+        0 : current line
+        1 : next displayed line
+        2 : prompt
+        
+   HPOS
+       -2 : prefix & newline
+       -1 : prefix
+        0 : newline
+        1 : suffix
+        2 : suffix & newline
