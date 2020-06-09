@@ -1,7 +1,7 @@
 (function() {
   var script = `
 console.log(args);
-if (args[1] == 'undefined') {
+if (typeof args[1] == 'undefined') {
   if (LL.checkToken()) {
     LL.upload()
   } else {
