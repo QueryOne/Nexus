@@ -176,13 +176,6 @@ LL = (function() {
       }
     }
   }
-  
-  var checkLocalStorage = function() {
-    if (!testLocalStorage()) 
-  }
-  var checkToken = function() {
-    if (localStorage.getItem(encryptedTokenKey) === null) { return false } else { return true }
-  }
   report('Run LL.setup() when you are ready to setup. Run LL.upload() when you want to upload.')
   
   return {
