@@ -119,7 +119,7 @@ LL = (function() {
     if (useGZIP && typeof gzip != 'undefined') { datum = gzip.zip(datum) };
     var log = btoa(unescape(encodeURIComponent(datum))); // https://stackoverflow.com/a/45844934
     var date = new Date()
-    var filename = date.getFullYear() + '.' + lpad((date.getUTCMonth() + 1), 2, '0') + '.' + lpad(date.getUTCDate(), 2, '0') + 'H' + lpad(date.getUTCHours(), 2, '0') + '.' + lpad(date.getUTCMinutes(), 2, '0') + '.' + lpad(date.getUTCSeconds(), 2, '0') + '-' + name;
+    var filename = date.getFullYear() + '.' + lpad((date.getUTCMonth() + 1), 2, '0') + '.' + lpad(date.getUTCDate(), 2, '0') + 'H' + lpad(date.getUTCHours(), 2, '0') + '.' + lpad(date.getUTCMinutes(), 2, '0') + '.' + lpad(date.getUTCSeconds(), 2, '0') + '-' + name
     
     return $.ajax({
       url: 'https://api.github.com/repos/' + login + '/' + repositoryAddress + '/contents/' + filename,
@@ -181,8 +181,7 @@ LL = (function() {
     if (!testLocalStorage()) 
   }
   var checkToken = function() {
-    var encryptedToken = localStorage.getItem(encryptedTokenKey);
-    if (encryptedToken === null) { return false } else { return true };
+    if (localStorage.getItem(encryptedTokenKey) === null) { return false } else { return true }
   }
   report('Run LL.setup() when you are ready to setup. Run LL.upload() when you want to upload.')
   
@@ -192,7 +191,7 @@ LL = (function() {
     upload: attemptUpload,
     
     /* api */
-    checkLocalStorage: function() { return !testLocalStorage() },
+    checkLocalStorage: function() { return testLocalStorage() },
     checkToken: function() { return localStorage.getItem(encryptedTokenKey) ? true : false },
     inputToken: inputToken,
   }
