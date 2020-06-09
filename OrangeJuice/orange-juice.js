@@ -9,10 +9,10 @@ orange = (function() {
   var parse = function(str) {
     var out = []
     var str = str || ''
-    var RE  = pattern.regex;
-    var SP  = pattern.span;
-    var CX  = pattern.color;
-    var PR  = pattern.head;
+    var RE  = patterns.regex;
+    var SP  = patterns.span;
+    var CX  = patterns.color;
+    var PR  = patterns.head;
     var matches; 
     while (matches = RE.exec(str)) { out.push(matches.index) }
     var cap = str.length
