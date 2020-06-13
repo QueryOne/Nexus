@@ -9,11 +9,14 @@ pm = (function() {
   // CSS
   var cssClass = 'pm-css'
   var cssRules = ''
-      // Dimensions
+      // Dimensions, Positioning
       cssRules += '#pm-main {position:absolute; right:1.2em; top:-408px; height:250px; width:360px;}\n'
+      cssRules += '#pm-closer {position:absolute; right:0.3em; top:0.3em; height:21px; width:21px;}\n'
       // Styling
-      cssRules += '#pm-main {border:1px solid rgba(88,14,14,0.33); border-radius:3px; background:rgba(22,19,17,1);'
+      cssRules += '#pm-main {border:1px solid rgba(88,14,14,0.33); border-radius:3px; background:rgba(22,19,17,1)\n'
       // Font
+      cssRules += '#pm-closer {color:rgba(200,22,22,1)}\n'
+      cssRules += '#pm-closer:hover {color:rgba(255,22,22,1)}\n'
   
   var css = function() {
     $('.' + cssClass).remove() // clear previous &
@@ -33,7 +36,7 @@ pm = (function() {
     // Anchor this to #input
     var build  = ''
         build += '<div id="' + pmOutput2 + '"'
-        build += '<div id="pm-closer">x</div>'
+        build += '<div id="pm-closer" onclick="pm.close()">x</div>'
         build += '' + '</div>'
     $('#bottom').append(build)
   }
@@ -67,10 +70,13 @@ pm = (function() {
     // Provide initialised prompt
     
   }
+  
+  var close = function() { $('#' + pmOutput2).remove() }
 
   return {
     initialise: initialise,
     packages  : packages,
     report    : report,
+    close     : close,
   }
 })()
