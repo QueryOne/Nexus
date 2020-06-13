@@ -11,14 +11,14 @@ pm = (function() {
   var cssClass = 'pm-css'
   var cssRules = ''
       // Dimensions, Positioning
-      cssRules += '#pm-main {position:absolute; right:1.2em; top:-258px; height:250px; width:360px;}\n'
-      cssRules += '#pm-closer {position:absolute; right:7px; top:7px; height:17px; width:17px;}\n'
+      cssRules += '#pm-main {position:absolute; right:11px; top:-258px; height:250px; width:360px;}\n'
+      cssRules += '#pm-closer {position:absolute; right:4px; top:4px; height:17px; width:17px;}\n'
       // Styling
       cssRules += '#pm-main {border:1px solid rgba(88,14,14,0.33); border-radius:3px; background:rgba(22,19,17,1); background:"raster.png";}\n'
       cssRules += '#pm-closer {cursor:pointer;}\n'
       // Font
       cssRules += '#pm-closer {color:rgba(200,22,22,1);}\n'
-      cssRules += '#pm-closer:hover {color:rgba(255,22,22,1);}\n'
+      cssRules += '#pm-closer:hover {color:rgba(255,22,22,1); text-align:center;}\n'
   
   var css = function() {
     $('.' + cssClass).remove() // clear previous &
