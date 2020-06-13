@@ -55,7 +55,14 @@ pm = (function() {
     var build  = ''
         build += '<div id="' + pmOutput2 + '">'
         build += '<div id="pm-closer" onclick="pm.close()">x</div>'
+        build += '<div id="pm-header">'
+        build +=   '<div id="pm-h-name">Package Name</div>'
+        build +=   '<div id="pm-h-use">Use</div>'
+        build +=   '<div id="pm-h-copy">Copy</div>'
+        build += '</div>'
+        build += '<div id="pm-body"></div>'
         build += '' + '</div>'
+    $('#' + pmOutput2).remove()
     $('#bottom').append(build)
     $('#' + pmOutput2).draggable({})
   }
