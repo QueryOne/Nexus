@@ -29,8 +29,8 @@ pm = (function() {
       // Google Fonts
       cssRules += '@import url("https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap");\n'
       // Font
-      cssRules += '#pm-closer {color:rgba(200,22,22,1);}\n'
-      cssRules += '#pm-closer:hover {color:rgba(255,22,22,1); text-align:center;}\n'
+      cssRules += '#pm-closer {color:rgba(200,22,22,1); text-align:center;}\n'
+      cssRules += '#pm-closer:hover {color:rgba(255,22,22,1);}\n'
       cssRules += '#pm-h-name, #pm-h-use, #pm-h-copy {padding-left:0.3em; line-height:18px; color:rgba(77,77,77,1);}\n'
       cssRules += '#pm-h-name, #pm-h-use, #pm-h-copy {font-family:"Tenali Ramakrishna",sans-serif; font-size:9pt;}\n'
   
