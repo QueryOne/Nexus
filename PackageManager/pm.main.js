@@ -78,7 +78,7 @@ pm = (function() {
         build += '' + '</div>'
     $('#' + pmOutput2).remove()
     $('#bottom').append(build)
-    $('#' + pmOutput2).draggable({})
+    $('#' + pmOutput2).draggable({handle:'#pm-header'})
   }
   
   var initialise = function() {
