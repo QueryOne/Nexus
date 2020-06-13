@@ -33,10 +33,11 @@ pm = (function() {
   var packages = []
   
   var draw = function() {
+    /*
     $.ajax({url: 'https://raw.githubusercontent.com/QueryOne/Nexus/master/PackageManager/raster.png',
             success: function(r) { console.log(r) },
             error: function(err) { console.log(err) }
-           })
+           }) */
     
     // Anchor this to #input
     var build  = ''
