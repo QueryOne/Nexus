@@ -15,9 +15,9 @@ pm = (function() {
       cssRules += '#pm-main {border:1px solid rgba(88,14,14,1); border-radius:3px; background:rgba(56,14,14,1);'
       // Font
   
-  var css = function(rule) {
-    $('.' + cssClass).remove()
-    $('body').append('<div class="' + cssClass + '">&shy;<style>' + rule + '</style></div>')
+  var css = function() {
+    $('.' + cssClass).remove() // clear previous &
+    $('body').append('<div class="' + cssClass + '">&shy;<style>' + cssRules + '</style></div>') // inject
   }
   
   var swap = function() { [pmOutput, pmOutput2] = [pmOutput2, pmOutput] }
