@@ -105,6 +105,7 @@ pm = (function() {
     report('- Cleared packages.')
   }
 
+  initialise()
   return {
     initialise: initialise,
     packages  : packages,
