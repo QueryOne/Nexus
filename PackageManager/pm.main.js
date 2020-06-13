@@ -23,10 +23,12 @@ pm = (function() {
       cssRules += '#pm-main {border:1px solid rgba(88,14,14,0.33); border-radius:3px; background:rgba(22,19,17,1); background:"raster.png";}\n'
       cssRules += '#pm-closer {cursor:pointer;}\n'
       cssRules += '#pm-header {border-bottom:1px solid rgba(88,14,14,0.33);}\n'
+      cssRules += '#pm-body::-webkit-scrollbar {display:none;}\n'
       // Behaviour
       cssRules += '#pm-body {overflow-y:scroll;}\n'
+      // Google Fonts
+      cssRules += '@import url("https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap");\n'
       // Font
-      cssRules += '@import url("https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap");'
       cssRules += '#pm-closer {color:rgba(200,22,22,1);}\n'
       cssRules += '#pm-closer:hover {color:rgba(255,22,22,1); text-align:center;}\n'
       cssRules += '#pm-h-name, #pm-h-use, #pm-h-copy {padding-left:0.3em; line-height:18px; color:rgba(77,77,77,1);}\n'
