@@ -65,16 +65,22 @@ pm = (function() {
     // swap();
     
     // Locate saved variables
+    //   for (const [k, v] of Object.entries(client.vars)) {
     report('- Locating saved variables.')
-    for (const [k, v] of Object.entries(client.vars)) {
-      if (k == pmKey) {
-        packages = v
-        break
-      }
+    if (!client.vars[pmKey]) {
+      client.set_variable(pmKey, defaults)
+      packages = defaults
+      report('-- set packages to defaults')
+    } else {
+      packages = client.vars[pmKey]
     }
     
     // Evaluate list of packages
     report('- Evaluating package list.')
+    packages.forEach(function(e,v) {
+      console.log(e)
+      console.log(v)
+    })
     
     // Download approved packages
     report('- Downloading approved packages.')
@@ -83,6 +89,8 @@ pm = (function() {
     report('- Beginning interface.')
     
     // Provide initialised prompt
+    
+    // Save
     
   }
   
