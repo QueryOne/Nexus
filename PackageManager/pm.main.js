@@ -12,8 +12,8 @@ pm = (function() {
   var cssRules = ''
       // Dimensions, Positioning
       cssRules += '#pm-main {position:absolute; right:11px; top:-258px; height:250px; width:360px;}\n'
-      cssRules += '#pm-closer {position:absolute; right:4px; top:4px; height:17px; width:17px;}\n'
-      cssRules += '#pm-header {position:absolute; left:0%; top:0%; height:18px; width:calc(100% - 17px - 4px);}\n'
+      cssRules += '#pm-closer {position:absolute; right:2px; top:2px; height:17px; width:17px;}\n'
+      cssRules += '#pm-header {position:absolute; left:0%; top:0%; height:18px; width:calc(100% - 17px - 2px);}\n'
       cssRules += '#pm-h-name, #pm-h-use, #pm-h-copy {display:inline-block; height:18px;}\n'
       cssRules += '#pm-h-name {position:absolute; left:0%; top:0%; width:205px;}\n'
       cssRules += '#pm-h-use {position:absolute; left:calc(0% + 190px); top:0%; width:60px;}\n'
@@ -29,7 +29,7 @@ pm = (function() {
       // Google Fonts
       cssRules += '@import url("https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap");\n'
       // Font
-      cssRules += '#pm-closer {color:rgba(200,22,22,1); text-align:center;}\n'
+      cssRules += '#pm-closer {color:rgba(200,22,22,1); text-align:center; line-height:18px;}\n'
       cssRules += '#pm-closer:hover {color:rgba(255,22,22,1);}\n'
       cssRules += '#pm-h-name, #pm-h-use, #pm-h-copy {padding-left:0.3em; line-height:18px; color:rgba(77,77,77,1);}\n'
       cssRules += '#pm-h-name, #pm-h-use, #pm-h-copy {font-family:"Tenali Ramakrishna",sans-serif; font-size:9pt;}\n'
