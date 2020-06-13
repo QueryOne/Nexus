@@ -2,7 +2,7 @@ pm = (function() {
   var prefix = '<span color="rgba(44,44,44,1)">(<span color="rgba(155,177,177,1)">pm</span>)</span>'
   var defaultColor = 'rgba( 231, 144, 33, 1 )'
   
-  var report = function(msg) { ow_Write('#main', prefix + '<span color="' + defaultColor + '">' + msg + '</span>') }
+  var report = function(msg) { ow_Write('#output_main', prefix + '<span color="' + defaultColor + '">' + msg + '</span>') }
   
   var defaults = [
     
