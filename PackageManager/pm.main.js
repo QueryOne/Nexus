@@ -10,9 +10,9 @@ pm = (function() {
   var cssClass = 'pm-css'
   var cssRules = ''
       // Dimensions
-      cssRules += '#pm-main {position:absolute; right:1.2em; top:-400px; height:400px; width:600px;}\n'
+      cssRules += '#pm-main {position:absolute; right:1.2em; top:-408px; height:250px; width:360px;}\n'
       // Styling
-      cssRules += '#pm-main {border:1px solid rgba(88,14,14,1); border-radius:3px; background:rgba(56,14,14,1);'
+      cssRules += '#pm-main {border:1px solid rgba(88,14,14,0.33); border-radius:3px; background:rgba(22,19,17,1);'
       // Font
   
   var css = function() {
