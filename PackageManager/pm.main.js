@@ -11,7 +11,7 @@ pm = (function() {
   var cssRules = ''
       // Dimensions, Positioning
       cssRules += '#pm-main {position:absolute; right:1.2em; top:-258px; height:250px; width:360px;}\n'
-      cssRules += '#pm-closer {position:absolute; right:0.3em; top:0.3em; height:21px; width:21px;}\n'
+      cssRules += '#pm-closer {position:absolute; right:7px; top:7px; height:17px; width:17px;}\n'
       // Styling
       cssRules += '#pm-main {border:1px solid rgba(88,14,14,0.33); border-radius:3px; background:rgba(22,19,17,1);}\n'
       cssRules += '#pm-closer {cursor:pointer; background:"raster.png";}\n'
