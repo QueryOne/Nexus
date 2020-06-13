@@ -28,7 +28,16 @@ pm = (function() {
   var report = function(msg) { ow_Write('#' + pmOutput, prefix + '<span style="color:' + defaultColor + ';"> ' + msg + '</span>') }
   
   var defaults = [
-    
+    { url: 'https://google.com',
+      id:'mapper',
+      name:'Achaean Mapper',
+      use:false
+    },
+    { url: 'https://google.com',
+      id:'utilities',
+      name:'Utilities',
+      use:false
+    },
   ]
   var packages = []
   
