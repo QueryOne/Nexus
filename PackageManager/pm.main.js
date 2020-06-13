@@ -14,6 +14,10 @@ pm = (function() {
       cssRules += '#pm-main {position:absolute; right:11px; top:-258px; height:250px; width:360px;}\n'
       cssRules += '#pm-closer {position:absolute; right:4px; top:4px; height:17px; width:17px;}\n'
       cssRules += '#pm-header {position:absolute; left:0%; top:0%; height:18px; width:calc(100%-17px-4px);}\n'
+      cssRules += '#pm-h-name, #pm-h-use, #pm-h-copy {display:inline-block; height:18px;}\n'
+      cssRules += '#pm-h-name {position:absolute; left:0%; top:0%; width:205px;}\n'
+      cssRules += '#pm-h-use {position:absolute; left:calc(0% + 190px); top:0%; width:60px;}\n'
+      cssRules += '#pm-h-copy {position:absolute; left:calc(0% + 190px + 60px); top:0%; width:60px;}\n'
       // Styling
       cssRules += '#pm-main {border:1px solid rgba(88,14,14,0.33); border-radius:3px; background:rgba(22,19,17,1); background:"raster.png";}\n'
       cssRules += '#pm-closer {cursor:pointer;}\n'
@@ -21,6 +25,7 @@ pm = (function() {
       // Font
       cssRules += '#pm-closer {color:rgba(200,22,22,1);}\n'
       cssRules += '#pm-closer:hover {color:rgba(255,22,22,1); text-align:center;}\n'
+      cssRules += '#pm-h-name, #pm-h-use, #pm-h-copy {padding-left:0.3em; color:rgba(77,77,77,1);}\n'
   
   var css = function() {
     $('.' + cssClass).remove() // clear previous &
