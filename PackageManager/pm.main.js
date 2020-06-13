@@ -87,9 +87,14 @@ pm = (function() {
     
     // Evaluate list of packages
     report('- Evaluating package list.')
+    var str = ''
     packages.forEach(function(e,v) {
       console.log(e)
       console.log(v)
+      str += '<div id="pm-package-' + e.name + '" class="pm-package-name">' + e.name + '</div>'
+      str += '<div id="pm-package-' + e.name + '-use" class="pm-package-use">' + e.use + '</div>'
+      str += '<div id="pm-package-' + e.name + '-copy" class="pm-package-copy">' + e.copy + '</div>'
+      $('#pm-body').append('<div id="pm-package-' + e.name + '" class="pm-package-item">' + str + '</div>')
     })
     
     // Download approved packages
