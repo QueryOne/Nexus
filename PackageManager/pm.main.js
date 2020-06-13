@@ -45,6 +45,7 @@ pm = (function() {
         build += '<div id="pm-closer" onclick="pm.close()">x</div>'
         build += '' + '</div>'
     $('#bottom').append(build)
+    $('#' + pmOutput2).draggable({})
   }
   
   var initialise = function() {
