@@ -69,8 +69,8 @@ pm = (function() {
     //   for (const [k, v] of Object.entries(client.vars)) {
     report('- Locating saved variables.')
     if (!client.vars[pmKey]) {
-      client.set_variable(pmKey, defaults)
       packages = defaults
+      client.set_variable(pmKey, packages)
       report('-- set packages to defaults')
     } else {
       packages = client.vars[pmKey]
@@ -96,11 +96,18 @@ pm = (function() {
   }
   
   var close = function() { $('#' + pmOutput2).remove() }
+  var clearPackages = function() {
+    packages = []
+    client.delete_variable(pmKey)
+    client.set_variable(pmKey, packages)
+    report('- Cleared packages.')
+  }
 
   return {
     initialise: initialise,
     packages  : packages,
     report    : report,
     close     : close,
+    clearPackages = clearPackages,
   }
 })()
