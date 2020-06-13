@@ -14,6 +14,7 @@ pm = (function() {
       cssRules += '#pm-closer {position:absolute; right:0.3em; top:0.3em; height:21px; width:21px;}\n'
       // Styling
       cssRules += '#pm-main {border:1px solid rgba(88,14,14,0.33); border-radius:3px; background:rgba(22,19,17,1)\n'
+      cssRules += '#pm-closer {cursor:pointer}\n'
       // Font
       cssRules += '#pm-closer {color:rgba(200,22,22,1)}\n'
       cssRules += '#pm-closer:hover {color:rgba(255,22,22,1)}\n'
