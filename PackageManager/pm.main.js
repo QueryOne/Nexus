@@ -1,5 +1,6 @@
 pm = (function() {
   // Options
+  var save = function() { client.gmcp_save_system(true) }
   var prefix = '<span style="color:rgba(44,44,44,1);">(<span style="color:rgba(111,177,177,1);">pm</span>)</span>'
   var defaultColor = 'rgba( 177, 144, 53, 1 )'
   var pmKey = 'pmPackages'
@@ -91,7 +92,7 @@ pm = (function() {
     // Provide initialised prompt
     
     // Save
-    
+    save()
   }
   
   var close = function() { $('#' + pmOutput2).remove() }
