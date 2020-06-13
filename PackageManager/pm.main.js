@@ -22,7 +22,7 @@ pm = (function() {
       // Styling
       cssRules += '#pm-main {border:1px solid rgba(88,14,14,0.33); border-radius:3px; background:rgba(22,19,17,1); background:"raster.png";}\n'
       cssRules += '#pm-closer {cursor:pointer;}\n'
-      cssRules += '#pm-header {border-bottom:1px solid rgba(88,14,14,0.33);}\n'
+      cssRules += '#pm-header {border-bottom:1px solid rgba(88,14,14,0.33); background:rgba(44,44,44,0.78);}\n'
       cssRules += '#pm-body::-webkit-scrollbar {display:none;}\n'
       // Behaviour
       cssRules += '#pm-body {overflow-y:scroll;}\n'
