@@ -30,14 +30,16 @@ pm = (function() {
   
   var defaults = [
     { url: 'https://google.com',
-      id:'mapper',
-      name:'Achaean Mapper',
-      use:false
-    },
-    { url: 'https://google.com',
       id:'utilities',
       name:'Utilities',
-      use:false
+      use:false,
+      copy:true,
+    },
+    { url: 'https://google.com',
+      id:'mapper',
+      name:'Achaean Mapper',
+      use:false,
+      copy:false,
     },
   ]
   var packages = []
