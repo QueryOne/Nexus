@@ -35,7 +35,7 @@ pm = (function() {
         build += '<div id="' + pmOutput2.replace('#','') + '"'
         build += '<div id="pm-closer">x</div>'
         build += '' + '</div>'
-    $('#input').append(build)
+    $('#bottom').append(build)
   }
   
   var initialise = function() {
