@@ -108,6 +108,6 @@ pm = (function() {
     packages  : packages,
     report    : report,
     close     : close,
-    clearPackages = clearPackages,
+    clearPackages : clearPackages,
   }
 })()
