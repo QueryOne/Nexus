@@ -32,7 +32,7 @@ pm = (function() {
     // 
     // Anchor this to #input
     var build  = ''
-        build += '<div id="' + pmOutput2.replace('#','') + '"'
+        build += '<div id="' + pmOutput2 + '"'
         build += '<div id="pm-closer">x</div>'
         build += '' + '</div>'
     $('#bottom').append(build)
